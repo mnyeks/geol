@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Coordinates</title>
+  <style>
+ body {
+   background-color: yellow;
+ }
+
+  </style>
+</head>
+<body>
+<h1>Location</h1>
+<div id="location"></div>
+<button id="Button">Check location</button>
+<button id="Button1">Clear info!</button>
+<br>
+<br>
+
+
+<div id ="secondloc"></div>
+<button id="button2">Check 2nd loc</button>
+<br>
+<br>
+<div id="calculateDistance"></div>
+<button id="button3">Distance</button>
+</body>
+
+<script src="geolib.min.js">
+</script>
+
+
+<script type="text/javascript">
+  //  var fistloc = {latitude: "",
+  //                 longitude: ""};
+  // var secondloc = {latitude: "",
+  //                  longitude: ""};
+
+  var firstloclatitude = 0;
+  var firstloclongitude = 0;
+                   
+   var btn = document.getElementById('Button');
+       btn.addEventListener('click', function() {
+
+   navigator.geolocation.getCurrentPosition(function(location){
+   var loc = document.getElementById("location");
+   var location = loc.innerHTML = location.coords.latitude + "," + location.coords.longitude; 
+      console.log('firstloc' + loc.innerHTML)
+    var point1 = loc.innerHTML.split(",");
+     firstloclatitude = parseFloat(point1[0]);
+     firstloclatitude = parseFloat(point1[1]);  
+  });
+ });
+
+  var secondloclatitude =  0;
+  var secondloclongitude = 0;
+   
+  var clrbtn = document.getElementById('Button1');
+      clrbtn.addEventListener('click', function() {
+
+   var loc = document.getElementById("location");
+   var loc = loc.innerHTML = "";
+ 
+ });
+ 
+ var locbtn = document.getElementById('button2');
+     locbtn.addEventListener('click', function() {
+
+   navigator.geolocation.getCurrentPosition(function(location){
+   var loc = document.getElementById("secondloc");
+   var loc = loc.innerHTML = location.coords.latitude + "," + location.coords.longitude;
+     // firstloc.latitude = location.coords.latitude + "," + locations.coords.longitude;
+     fistloc.longitude = location.coords.longitude + "," + locations.coords.longitude;
+     console.log('secondloc' + loc.innerHTML)
+    var point2 = loc.innerHTML.split(",");
+     secondloclatitude = parseFloat(point1[0]);
+     secondloclatitude = parseFloat(point1[1]);
+	});
+  });
+
+ var clrbtn = document.getElementById('Button1');
+      clrbtn.addEventListener('click', function() {
+   var loc = document.getElementById("secondloc");
+   var loc = loc.innerHTML = "";
+ 
+ });
+ var distance = document.getElementById('calculateDistance');
+   console.log('firstloc');
+   console.log(firstloclatitude);
+   console.log(firstloclongitude);
+   console.log('secondloc');
+   console.log(firstloclatitude);
+   console.log(firstloclongitude);
+
+ var dis = geolib.getDistance (
+       {latitude:firstloclatitude,longitude:firstloclongitude},
+       {latitude:secondloclatitude,longitude:secondloclongitude}
+ );     
+ 
+ 
+   
+</script>
+</html>
+
